@@ -18,25 +18,10 @@ resource "aws_route53_record" "mx_records" {
   }
 }
 
-resource "aws_route53_record" "spf_txt" {
+resource "aws_route53_record" "spf" {
   zone_id = data.aws_route53_zone.zone.zone_id
   name    = data.aws_route53_zone.zone.name
   type    = "TXT"
-  ttl     = "300"
-
-  records = [
-    "v=spf1 ${join(" ", var.spf_include)} ?all",
-  ]
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_route53_record" "spf_spf" {
-  zone_id = data.aws_route53_zone.zone.zone_id
-  name    = data.aws_route53_zone.zone.name
-  type    = "SPF"
   ttl     = "300"
 
   records = [
