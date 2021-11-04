@@ -78,6 +78,21 @@ resource "aws_route53_record" "fm3_domainkey" {
   }
 }
 
+resource "aws_route53_record" "caldav" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "_caldav._tcp"
+  type    = "SRV"
+  ttl     = "300"
+
+  records = [
+    "0 0 0 .",
+  ]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 resource "aws_route53_record" "caldavs" {
   zone_id = data.aws_route53_zone.zone.zone_id
   name    = "_caldavs._tcp"
@@ -86,6 +101,21 @@ resource "aws_route53_record" "caldavs" {
 
   records = [
     "0 1 443 caldav.fastmail.com.",
+  ]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_route53_record" "pop3" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "_pop3._tcp"
+  type    = "SRV"
+  ttl     = "300"
+
+  records = [
+    "0 0 0 .",
   ]
 
   lifecycle {
@@ -108,6 +138,21 @@ resource "aws_route53_record" "pop3s" {
   }
 }
 
+resource "aws_route53_record" "carddav" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "_carddav._tcp"
+  type    = "SRV"
+  ttl     = "300"
+
+  records = [
+    "0 0 0 .",
+  ]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 resource "aws_route53_record" "carddavs" {
   zone_id = data.aws_route53_zone.zone.zone_id
   name    = "_carddavs._tcp"
@@ -123,6 +168,21 @@ resource "aws_route53_record" "carddavs" {
   }
 }
 
+resource "aws_route53_record" "imap" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "_imap._tcp"
+  type    = "SRV"
+  ttl     = "300"
+
+  records = [
+    "0 0 0 .",
+  ]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 resource "aws_route53_record" "imaps" {
   zone_id = data.aws_route53_zone.zone.zone_id
   name    = "_imaps._tcp"
@@ -131,6 +191,21 @@ resource "aws_route53_record" "imaps" {
 
   records = [
     "0 1 993 imap.fastmail.com.",
+  ]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_route53_record" "jmap" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "_jmap._tcp"
+  type    = "SRV"
+  ttl     = "300"
+
+  records = [
+    "0 1 443 jmap.fastmail.com.",
   ]
 
   lifecycle {
