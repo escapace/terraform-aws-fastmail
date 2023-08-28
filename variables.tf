@@ -1,4 +1,7 @@
-variable "zone_id" {}
+variable "zone_id" {
+  type        = string
+  description = "Hosted Zone id of the desired Hosted Zone."
+}
 
 variable "spf_include" {
   type        = list(string)
@@ -7,4 +10,3 @@ variable "spf_include" {
     "include:spf.messagingengine.com",
   ]
 }
-
